@@ -1,0 +1,22 @@
+.github/workflows/build-desktop-windows.yml
+  s_62b8bff2e22220::t_40e72bf3dc5aba 31-40
+build_windows.ps1
+  s_62b8bff2e22220::t_e82b6a6207213a 16-19,22-43
+  s_62b8bff2e22220::t_ffb8b6b01096e8 44
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "c0b53197bab03e4feb8aa237bb484253b4f125cd",
+  "prompts": {},
+  "sessions": {
+    "s_62b8bff2e22220": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "5aecc519-a45c-457f-9877-6a7094c407fe",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "凌宏旭 <lhx08434@ly.com>"
+    }
+  }
+}
