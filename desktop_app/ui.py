@@ -57,15 +57,12 @@ class AddRoomDialog(QDialog):
         self.setWindowTitle("添加监控直播间")
         self.setMinimumWidth(520)
 
-        self.name_edit = QLineEdit()
-        self.name_edit.setPlaceholderText("可留空，将根据地址生成")
         self.url_edit = QLineEdit()
-        self.url_edit.setPlaceholderText("抖音直播间或 m3u8/flv 地址")
+        self.url_edit.setPlaceholderText("输入抖音直播间或 m3u8/flv 地址")
         self.monitor_checkbox = QCheckBox("添加后立即开启监控")
         self.monitor_checkbox.setChecked(True)
 
         form = QFormLayout()
-        form.addRow("名称", self.name_edit)
         form.addRow("直播间地址", self.url_edit)
         form.addRow("", self.monitor_checkbox)
 
@@ -81,7 +78,7 @@ class AddRoomDialog(QDialog):
 
     def room(self) -> Room:
         return Room.create(
-            name=self.name_edit.text(),
+            name="",
             url=self.url_edit.text(),
             monitor_enabled=self.monitor_checkbox.isChecked(),
         )
@@ -430,7 +427,12 @@ class MainWindow(QMainWindow):
         if not room:
             return
         room.live_status = result.status
-        room.anchor_name = result.anchor_name or room.anchor_name
+        detected_name = result.anchor_name.strip()
+        if detected_name:
+            room.anchor_name = detected_name
+            if room.name != detected_name:
+                room.name = detected_name
+                self.repository.set_name(room.id, detected_name)
         room.title = result.title
         room.stream_url = result.stream_url
         room.last_checked_at = result.checked_at

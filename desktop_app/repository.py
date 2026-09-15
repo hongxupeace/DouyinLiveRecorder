@@ -93,6 +93,22 @@ class RoomRepository:
             raise KeyError(f"找不到直播间：{room_id}")
         self._connection.commit()
 
+    def set_name(self, room_id: str, name: str) -> None:
+        clean_name = name.strip()
+        if not clean_name:
+            raise ValueError("直播间名称不能为空")
+        cursor = self._connection.execute(
+            """
+            UPDATE rooms
+            SET name = ?, updated_at = ?
+            WHERE id = ?
+            """,
+            (clean_name, utc_now(), room_id),
+        )
+        if cursor.rowcount != 1:
+            raise KeyError(f"找不到直播间：{room_id}")
+        self._connection.commit()
+
     def delete(self, room_id: str) -> None:
         self._connection.execute("DELETE FROM rooms WHERE id = ?", (room_id,))
         self._connection.commit()

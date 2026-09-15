@@ -27,6 +27,14 @@ class RoomRepositoryTests(unittest.TestCase):
         self.assertEqual(saved[0].name, "测试主播")
         self.assertFalse(saved[0].monitor_enabled)
 
+    def test_persists_automatically_detected_room_name(self):
+        room = Room.create("", "https://live.douyin.com/123")
+        self.repository.add(room)
+
+        self.repository.set_name(room.id, "自动识别主播")
+
+        self.assertEqual(self.repository.list_rooms()[0].name, "自动识别主播")
+
     def test_rejects_duplicate_url_case_insensitively(self):
         self.repository.add(Room.create("一", "https://LIVE.DOUYIN.COM/123"))
 
