@@ -430,6 +430,18 @@ uv run main.py
 其中Linux系统请使用`python3 main.py` 运行。
 
 &emsp;
+## 🖥️ Windows 桌面版
+
+仓库包含基于 PySide6 的桌面版 MVP，可添加直播间并分别控制监控和录制：
+
+```powershell
+uv sync
+uv run python desktop.py
+```
+
+目前支持抖音以及自定义 m3u8/flv 地址。完整运行与打包说明见 [WINDOWS_DESKTOP.md](WINDOWS_DESKTOP.md)。
+
+&emsp;
 ## 🐋容器运行
 
 在运行命令之前，请确保您的机器上安装了 [Docker](https://docs.docker.com/get-docker/) 和 [Docker Compose](https://docs.docker.com/compose/install/) 
