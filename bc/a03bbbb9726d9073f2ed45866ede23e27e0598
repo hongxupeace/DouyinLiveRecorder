@@ -1,0 +1,72 @@
+desktop.py
+  s_62b8bff2e22220::t_1dc051dcdb299e 1-4
+tests/test_desktop_repository.py
+  s_62b8bff2e22220::t_bcc3112e645278 1-46
+desktop_app/recording.py
+  s_62b8bff2e22220::t_1df597ae3b2666 6
+  s_62b8bff2e22220::t_5433ba15650ac3 1-5,7-124
+desktop_app/ui.py
+  s_62b8bff2e22220::t_7f50e0c4599e07 1-2,4-5,8-21,23-480,482-501
+  s_62b8bff2e22220::t_9d7ca7fed2064b 3,481
+  s_62b8bff2e22220::t_8a12c872d27188 6-7
+  s_62b8bff2e22220::t_b11bd1537d184a 22
+desktop_app/__main__.py
+  s_62b8bff2e22220::t_1994f500eed3f0 1-28,30-35
+  s_62b8bff2e22220::t_7d61dbd4e4b8c7 29
+desktop_app/ffmpeg_command.py
+  s_62b8bff2e22220::t_0875e7974b27d6 1-6,8-44,46-78
+  s_62b8bff2e22220::t_f9f02029d0ba82 7,45
+desktop_app/repository.py
+  s_62b8bff2e22220::t_33b6052c36d7ba 1-101
+src/__init__.py
+  s_62b8bff2e22220::t_c8ce7ed83b0cb4 14-15
+desktop_app/domain.py
+  s_62b8bff2e22220::t_6b23107656387b 1-114
+pyproject.toml
+  s_62b8bff2e22220::t_2a401f6e5cd148 16-17
+tests/test_desktop_engine.py
+  s_62b8bff2e22220::t_d531995f9d1f32 1-66,68-80
+  s_62b8bff2e22220::t_fcd8a0b14bbde0 67
+build_windows.ps1
+  s_62b8bff2e22220::t_c3de06902828c7 1-2,4-43
+  s_62b8bff2e22220::t_0b36d86119a644 3
+WINDOWS_DESKTOP.md
+  s_62b8bff2e22220::t_dd5bb83337ea2a 1-52
+desktop_app/monitoring.py
+  s_62b8bff2e22220::t_2b28d41de3e301 35
+  s_62b8bff2e22220::t_906d6347ee629b 1-34,36-125
+desktop_app/probe.py
+  s_62b8bff2e22220::t_248973d6f62172 1-3,5-23,27-48,50-59,61-67,69-86,88-103,105-125
+  s_62b8bff2e22220::t_be388a9784bdcc 4,24-26
+  s_62b8bff2e22220::t_160ead924bb668 49,60,68,104
+  s_62b8bff2e22220::t_669a9b4aeb94cf 87
+tests/test_desktop_domain.py
+  s_62b8bff2e22220::t_b2f699d5658bf5 1-36
+README.md
+  s_62b8bff2e22220::t_4522bc914acb39 433-443
+  s_62b8bff2e22220::t_8f24b56d55b485 432
+.github/workflows/build-desktop-windows.yml
+  s_62b8bff2e22220::t_e11481fefd3f27 1-51
+desktop_app/preferences.py
+  s_62b8bff2e22220::t_457bbdbe3836d6 1-54
+desktop_app/__init__.py
+  s_62b8bff2e22220::t_a65206c43913ee 1-3
+uv.lock
+  s_62b8bff2e22220::t_c20ae2c4e51a7e 1-521
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "bca03bbbb9726d9073f2ed45866ede23e27e0598",
+  "prompts": {},
+  "sessions": {
+    "s_62b8bff2e22220": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "5aecc519-a45c-457f-9877-6a7094c407fe",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "凌宏旭 <lhx08434@ly.com>"
+    }
+  }
+}
