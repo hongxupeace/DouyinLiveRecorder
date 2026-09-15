@@ -13,15 +13,34 @@ if (-not (Get-Command uv -ErrorAction SilentlyContinue)) {
 
 uv sync
 
-$ffmpegPath = Join-Path $projectRoot "ffmpeg.exe"
-if (-not (Test-Path $ffmpegPath)) {
-    $ffmpegCommand = Get-Command ffmpeg.exe -ErrorAction SilentlyContinue
-    if ($ffmpegCommand) {
-        $ffmpegPath = $ffmpegCommand.Source
-    } else {
-        throw "未找到 ffmpeg.exe。请将它放到项目根目录，或加入 PATH。"
-    }
+$ffmpegCandidates = @()
+$projectFfmpeg = Join-Path $projectRoot "ffmpeg.exe"
+if (Test-Path $projectFfmpeg) {
+    $ffmpegCandidates += Get-Item $projectFfmpeg
 }
+
+$ffmpegCommand = Get-Command ffmpeg.exe -ErrorAction SilentlyContinue
+if ($ffmpegCommand) {
+    $ffmpegCandidates += Get-Item $ffmpegCommand.Source
+}
+
+if ($env:ChocolateyInstall -and (Test-Path "$env:ChocolateyInstall\lib")) {
+    $ffmpegCandidates += Get-ChildItem `
+        "$env:ChocolateyInstall\lib" `
+        -Recurse `
+        -Filter ffmpeg.exe `
+        -ErrorAction SilentlyContinue
+}
+
+$ffmpegFile = $ffmpegCandidates |
+    Where-Object { $_.Length -gt 5MB } |
+    Select-Object -First 1
+
+if (-not $ffmpegFile) {
+    throw "未找到完整的 ffmpeg.exe。请将 FFmpeg 静态版放到项目根目录，或加入 PATH。"
+}
+
+$ffmpegPath = $ffmpegFile.FullName
 
 $arguments = @(
     "--noconfirm",

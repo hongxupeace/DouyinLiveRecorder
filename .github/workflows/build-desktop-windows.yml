@@ -28,8 +28,16 @@ jobs:
         shell: pwsh
         run: |
           choco install ffmpeg -y --no-progress
-          $ffmpeg = (Get-Command ffmpeg.exe).Source
-          Copy-Item $ffmpeg .\ffmpeg.exe
+          $ffmpeg = Get-ChildItem `
+            "$env:ChocolateyInstall\lib" `
+            -Recurse `
+            -Filter ffmpeg.exe |
+            Where-Object { $_.Length -gt 5MB } |
+            Select-Object -First 1
+          if (-not $ffmpeg) {
+            throw "Chocolatey 安装目录中未找到完整的 ffmpeg.exe。"
+          }
+          Copy-Item $ffmpeg.FullName .\ffmpeg.exe
 
       - name: Build desktop application
         shell: pwsh
