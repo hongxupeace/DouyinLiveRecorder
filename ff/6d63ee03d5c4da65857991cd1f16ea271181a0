@@ -1,0 +1,23 @@
+desktop_app/ui.py
+  s_62b8bff2e22220::t_77f6a00d044d3f 61,81,430-435
+tests/test_desktop_repository.py
+  s_62b8bff2e22220::t_738eee9c8ed09a 30-37
+desktop_app/repository.py
+  s_62b8bff2e22220::t_884824e3671976 96-111
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.7.4",
+  "base_commit_sha": "ff6d63ee03d5c4da65857991cd1f16ea271181a0",
+  "prompts": {},
+  "sessions": {
+    "s_62b8bff2e22220": {
+      "agent_id": {
+        "tool": "cursor",
+        "id": "5aecc519-a45c-457f-9877-6a7094c407fe",
+        "model": "gpt-5.6-sol"
+      },
+      "human_author": "凌宏旭 <lhx08434@ly.com>"
+    }
+  }
+}
