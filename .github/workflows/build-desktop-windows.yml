@@ -43,17 +43,10 @@ jobs:
         shell: pwsh
         run: .\build_windows.ps1
 
-      - name: Create distribution archive
-        shell: pwsh
-        run: |
-          Compress-Archive `
-            -Path .\dist\DouyinLiveRecorderDesktop\* `
-            -DestinationPath .\DouyinLiveRecorderDesktop-Windows-x64.zip
-
       - name: Upload Windows package
         uses: actions/upload-artifact@v4
         with:
           name: DouyinLiveRecorderDesktop-Windows-x64
-          path: DouyinLiveRecorderDesktop-Windows-x64.zip
+          path: dist/DouyinLiveRecorderDesktop.exe
           if-no-files-found: error
           retention-days: 7

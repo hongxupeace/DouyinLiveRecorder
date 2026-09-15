@@ -39,10 +39,10 @@ Set-ExecutionPolicy -Scope Process Bypass
 构建结果位于：
 
 ```text
-dist\DouyinLiveRecorderDesktop\
+dist\DouyinLiveRecorderDesktop.exe
 ```
 
-分发时应发送整个 `DouyinLiveRecorderDesktop` 文件夹。接收方双击 `DouyinLiveRecorderDesktop.exe` 即可运行，无需安装 Python。
+该文件已包含 Python、PySide6 和 FFmpeg。接收方双击 `DouyinLiveRecorderDesktop.exe` 即可运行，无需安装其他环境。单文件模式首次启动时需要解压运行库到系统临时目录，因此会比文件夹模式稍慢。
 
 ## 当前限制
 

@@ -46,7 +46,7 @@ $arguments = @(
     "--noconfirm",
     "--clean",
     "--windowed",
-    "--onedir",
+    "--onefile",
     "--name", "DouyinLiveRecorderDesktop",
     "--hidden-import", "src.spider",
     "--hidden-import", "src.stream",
@@ -58,5 +58,5 @@ $arguments = @(
 uv run --with pyinstaller pyinstaller @arguments
 
 Write-Host ""
-Write-Host "构建完成：$projectRoot\dist\DouyinLiveRecorderDesktop"
-Write-Host "运行 DouyinLiveRecorderDesktop.exe 即可启动。"
+Write-Host "构建完成：$projectRoot\dist\DouyinLiveRecorderDesktop.exe"
+Write-Host "可直接复制并运行该 EXE 文件。"
