@@ -1,11 +1,15 @@
 from __future__ import annotations
 
+import re
 from dataclasses import dataclass, field
 from datetime import datetime, timezone
 from enum import Enum
 from pathlib import Path
 from urllib.parse import urlparse
 from uuid import uuid4
+
+URL_PATTERN = re.compile(r"https?://[^\s<>'\"]+", re.IGNORECASE)
+TRAILING_URL_PUNCTUATION = ".,;:!?，。；：！？、）》】」』}"
 
 
 class LiveStatus(str, Enum):
@@ -95,16 +99,36 @@ def detect_platform(url: str) -> str:
     raise ValueError("首版仅支持抖音直播间以及 m3u8/flv 直播源")
 
 
-def normalize_url(url: str) -> str:
-    value = url.strip()
+def normalize_url(text: str) -> str:
+    value = text.strip()
     if not value:
-        raise ValueError("直播间地址不能为空")
+        raise ValueError("分享内容或直播间地址不能为空")
+
+    candidates = [
+        match.group(0).rstrip(TRAILING_URL_PUNCTUATION)
+        for match in URL_PATTERN.finditer(value)
+    ]
+    if not candidates:
+        candidates = [value]
+
+    for candidate in candidates:
+        try:
+            normalized = _normalize_url_candidate(candidate)
+            detect_platform(normalized)
+            return normalized
+        except ValueError:
+            continue
+
+    raise ValueError("分享内容中没有找到受支持的抖音或 m3u8/flv 直播地址")
+
+
+def _normalize_url_candidate(url: str) -> str:
+    value = url.strip()
     if "://" not in value:
         value = f"https://{value}"
     parsed = urlparse(value)
     if parsed.scheme not in {"http", "https"} or not parsed.netloc:
         raise ValueError("请输入有效的 http/https 直播间地址")
-    detect_platform(value)
     return value
 
 

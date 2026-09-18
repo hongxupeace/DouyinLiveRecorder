@@ -57,8 +57,9 @@ class AddRoomDialog(QDialog):
         self.setWindowTitle("添加监控直播间")
         self.setMinimumWidth(520)
 
-        self.url_edit = QLineEdit()
-        self.url_edit.setPlaceholderText("输入抖音直播间或 m3u8/flv 地址")
+        self.url_edit = QPlainTextEdit()
+        self.url_edit.setPlaceholderText("粘贴抖音分享内容，或输入 m3u8/flv 地址")
+        self.url_edit.setMaximumHeight(90)
         self.monitor_checkbox = QCheckBox("添加后立即开启监控")
         self.monitor_checkbox.setChecked(True)
 
@@ -79,7 +80,7 @@ class AddRoomDialog(QDialog):
     def room(self) -> Room:
         return Room.create(
             name="",
-            url=self.url_edit.text(),
+            url=self.url_edit.toPlainText(),
             monitor_enabled=self.monitor_checkbox.isChecked(),
         )
 
